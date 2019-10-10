@@ -3,10 +3,10 @@ import "./App.css";
 import {Data} from "./Data";
 
 function App() {
-  const data = Data();
+
 
   const handleChange = () => {
-    console.log(data);
+    console.log(Data);
   };
 
   return (

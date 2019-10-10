@@ -5,13 +5,10 @@ export const Data = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(url, { mode: "cors" })
-      .then(function(response) {
-        console.log(response.json());
-      })
-      .catch(function(error) {
-        console.log("Request failed", error);
-      });
-    }, [data]);
-    return data;
+    fetch(url)
+      .then(results => setData(results.data))
+      .catch(error => console.log("Request failed", error));
+  }, [data]);
+
+  return data;
 };
