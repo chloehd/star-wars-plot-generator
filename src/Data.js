@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 
-export const Data = () => {
-  const url = "https://swapi.co/api/people";
+// const url = "https://swapi.co/api/";
+
+export const Data = url => {
   const [data, setData] = useState([]);
-
+  const [loading, setLoading] = useState(true);
+  async function fetchUrl() {
+    const response = await fetch(url);
+    const json = await response.json();
+    setData(json);
+    setLoading(false);
+  }
   useEffect(() => {
-    fetch(url)
-      .then(results => setData(results.data))
-      .catch(error => console.log("Request failed", error));
-  }, [data]);
-
-  return data;
+    fetchUrl();
+  }, []);
+  return [data, loading];
 };
