@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Data } from "./Data";
 
-
 export const SearchPlanet = () => {
-  const [data, loading] = Data(
-    "https://swapi.co/api/planets/"
-  );
+  const [userInputPlanet, setUserInputPlanet] = useState("");
+  const [data, loading] = Data("https://swapi.co/api/planets/");
+
+  const handleChangePlanet = e => {
+    setUserInputPlanet(e.target.value);
+    console.log(e.target.value);
+  };
+
   return (
     <>
-      <h1>Planets</h1>
-      {loading ? (
-        "Loading..."
+      <p>Choose a planet</p>
+      <input
+        className="choose-planet"
+        type="text"
+        value={userInputPlanet}
+        onChange={handleChangePlanet}
+      />
+
+      { loading ? (
+        "Loading"
       ) : (
-        <ul>
+        <div className="results">
           {data.results.map(({ name, url }) => (
-            <li key={`${url}`}>
-              <p>{name} – {url}</p>
-            </li>
+            <p key={`${url}`}>{name}</p>
           ))}
-        </ul>
+        </div>
       )}
     </>
   );
-}
+};
