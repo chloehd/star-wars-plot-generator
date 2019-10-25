@@ -1,34 +1,45 @@
-import React, { useState } from "react";
-import { Data } from "./Data";
+import React, { Component } from "react";
 
-export const SearchPlanet = () => {
-  const [userInputPlanet, setUserInputPlanet] = useState("");
-  const [data, loading] = Data("https://swapi.co/api/planets/");
+class SearchPlanet extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInput: "",
+      data: []
+    };
+  }
 
-  const handleChangePlanet = e => {
-    setUserInputPlanet(e.target.value);
-    console.log(e.target.value);
+  componentDidMount = () => {
+    fetch("https://swapi.co/api/planets/")
+      .then(res => {
+        res.json().then(data => this.setState({ data: data.results }));
+      })
+      .catch(err => console.log(err));
   };
 
-  return (
-    <>
-      <p>Choose a planet</p>
-      <input
-        className="choose-planet"
-        type="text"
-        value={userInputPlanet}
-        onChange={handleChangePlanet}
-      />
+  handleChange = e => {
+    this.setState({ userInput: e.target.value });
+  };
 
-      { loading ? (
-        "Loading"
-      ) : (
-        <div className="results">
-          {data.results.map(({ name, url }) => (
-            <p key={`${url}`}>{name}</p>
-          ))}
-        </div>
-      )}
-    </>
-  );
-};
+  render() {
+    const filteredArray = this.state.data.filter(dataFilter => {
+      return dataFilter.name.toLowerCase().indexOf(this.state.userInput) !== -1;
+    });
+
+    return (
+      <form action="search">
+        <input type="text" onChange={this.handleChange} />
+        <p>Results:</p>
+        <ul>
+          {this.state.userInput
+            ? filteredArray.map(oneData => {
+                return <li key={oneData.url}>{oneData.name}</li>;
+              })
+            : null}
+        </ul>
+      </form>
+    );
+  }
+}
+
+export default SearchPlanet;
