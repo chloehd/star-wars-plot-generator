@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import SearchPlanet from "./SearchPlanet";
+import Plot from "./Components/Plot";
+
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
       </header>
 
     <SearchPlanet />
+    <Plot />
     </div>
   );
 }

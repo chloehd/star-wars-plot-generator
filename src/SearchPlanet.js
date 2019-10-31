@@ -5,7 +5,8 @@ class SearchPlanet extends Component {
     super(props);
     this.state = {
       userInput: "",
-      data: []
+      data: [],
+      selectedItem: []
     };
   }
 
@@ -26,14 +27,28 @@ class SearchPlanet extends Component {
       return dataFilter.name.toLowerCase().indexOf(this.state.userInput) !== -1;
     });
 
+    const userChoice = select => {
+      const selectValue = [];
+      selectValue.push(select);
+
+      this.setState({ selectedItem: selectValue });
+      console.log(selectValue);
+    };
+
     return (
       <form action="search">
         <input type="text" onChange={this.handleChange} />
-        <p>Results:</p>
         <ul>
           {this.state.userInput
             ? filteredArray.map(oneData => {
-                return <li key={oneData.url}>{oneData.name}</li>;
+                return (
+                  <li
+                    key={oneData.url}
+                    onClick={() => userChoice(oneData.name)}
+                  >
+                    {oneData.name}
+                  </li>
+                );
               })
             : null}
         </ul>
