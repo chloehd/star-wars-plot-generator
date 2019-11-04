@@ -13,6 +13,10 @@ class SearchPlanet extends Component {
 
   handleChange = e => {
     this.setState({ userInput: e.target.value });
+
+    if (e.target.value === "") {
+      this.setState({showData: true});
+    }
   };
 
   render() {
