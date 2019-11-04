@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SearchPlanet extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,13 +15,15 @@ class SearchPlanet extends Component {
     this.setState({ userInput: e.target.value });
 
     if (e.target.value === "") {
-      this.setState({showData: true});
+      this.setState({ showData: true });
     }
   };
 
   render() {
+    const { userInput, showData, selectedItem } = this.state;
+
     const filteredArray = this.props.planets.filter(dataFilter => {
-      return dataFilter.name.toLowerCase().indexOf(this.state.userInput) !== -1;
+      return dataFilter.name.toLowerCase().indexOf(userInput) !== -1;
     });
 
     const userChoice = select => {
@@ -36,7 +38,7 @@ class SearchPlanet extends Component {
       <form action="search">
         <input type="text" onChange={this.handleChange} />
         <ul>
-          {this.state.userInput && this.state.showData === true
+          {userInput && showData === true
             ? filteredArray.map(oneData => {
                 return (
                   <li
@@ -49,7 +51,7 @@ class SearchPlanet extends Component {
               })
             : null}
 
-          {this.state.selectedItem !== [] && this.state.showData === false ? (
+          {selectedItem !== [] && showData === false ? (
             <li>{this.state.selectedItem}</li>
           ) : null}
         </ul>
@@ -58,4 +60,4 @@ class SearchPlanet extends Component {
   }
 }
 
-export default SearchPlanet;
+export default Search;

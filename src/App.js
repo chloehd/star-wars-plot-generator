@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import SearchPlanet from "./SearchPlanet";
+import Search from "./Search";
 import Plot from "./Components/Plot";
 import { PlotData } from "./PlotData";
+
 
 
 class App extends Component {
@@ -13,12 +14,14 @@ class App extends Component {
       planets: [],
       people: [],
       plotDataIsShow: true,
-      resource: "",
     }
   }
 
+
   componentDidMount = () => {
-    fetch(`https://swapi.co/api/planets/`)
+    const resource = "planets"; 
+
+    fetch(`https://swapi.co/api/${resource}/`)
       .then(res => {
         res.json().then(data => this.setState({ planets: data.results }));
       })
@@ -31,13 +34,14 @@ class App extends Component {
 
 
   render() {
+    
     return (
       <div className="App">
         <header className="App-header">
           <h1>Plot Generator</h1>
         </header>
   
-      <SearchPlanet planets={this.state.planets} />
+      <Search className="planets" planets={this.state.planets}/>
       <Plot onClick={this.togglePlot} />
       </div>
     );
