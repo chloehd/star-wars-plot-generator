@@ -2,47 +2,43 @@ import React, { Component } from "react";
 import "./App.css";
 import Search from "./Search";
 import Plot from "./Components/Plot";
-import { PlotData } from "./PlotData";
-
-
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      planets: [],
-      people: [],
-      plotDataIsShow: true,
-    }
+      selectedPlanet: null,
+      selectedPerson: null
+    };
   }
-
-
-  componentDidMount = () => {
-    const resource = "planets"; 
-
-    fetch(`https://swapi.co/api/${resource}/`)
-      .then(res => {
-        res.json().then(data => this.setState({ planets: data.results }));
-      })
-      .catch(err => console.log(err));
-  };
 
   togglePlot = () => {
     this.setState(state => ({ plotDataIsShow: !state.plotDataIsShow }));
   };
 
-
   render() {
-    
+    const { selectedPerson, selectedPlanet } = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
           <h1>Plot Generator</h1>
         </header>
-  
-      <Search className="planets" planets={this.state.planets}/>
-      <Plot onClick={this.togglePlot} />
+
+        <Search
+          resource="planets"
+          onSelect={planet => {
+            this.setState({ selectedPlanet: planet });
+          }}
+        />
+        <Search
+          resource="people"
+          onSelect={person => {
+            this.setState({ selectedPerson: person });
+          }}
+        />
+        {selectedPerson && selectedPlanet && <Plot person={selectedPerson} planet={selectedPlanet}/>}
       </div>
     );
   }

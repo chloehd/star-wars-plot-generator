@@ -6,54 +6,68 @@ class Search extends Component {
     this.state = {
       userInput: "",
       data: [],
-      selectedItem: [],
-      showData: true
+      selectedItem: null
     };
   }
 
+  componentDidMount = () => {
+    const data = [];
+    const url = `https://swapi.co/api/${this.props.resource}/`;
+
+    const loadData = url => {
+      return fetch(url).then(res => {
+        return res.json().then(json => {
+          data.push(json.results);
+
+          if (json.next) {
+            loadData(json.next);
+          }
+        });
+      });
+    };
+
+    loadData(url);
+    this.setState({ data: data });
+
+    // fetch(`https://swapi.co/api/${this.props.resource}/`)
+    //   .then(res => {
+    //     res.json().then(data => this.setState({ data: data.results }));
+    //   })
+    //   .catch(err => console.log(err));
+  };
+
   handleChange = e => {
     this.setState({ userInput: e.target.value });
-
-    if (e.target.value === "") {
-      this.setState({ showData: true });
-    }
   };
 
   render() {
-    const { userInput, showData, selectedItem } = this.state;
+    const { userInput, selectedItem } = this.state;
 
-    const filteredArray = this.props.planets.filter(dataFilter => {
+    const filteredArray = this.state.data.filter(dataFilter => {
       return dataFilter.name.toLowerCase().indexOf(userInput) !== -1;
     });
 
     const userChoice = select => {
-      const selectValue = [];
-      selectValue.push(select);
-
-      this.setState({ selectedItem: selectValue });
-      this.setState({ showData: false });
+      this.setState({ selectedItem: select });
+      this.props.onSelect(select);
     };
 
     return (
       <form action="search">
         <input type="text" onChange={this.handleChange} />
         <ul>
-          {userInput && showData === true
-            ? filteredArray.map(oneData => {
-                return (
-                  <li
-                    key={oneData.url}
-                    onClick={() => userChoice(oneData.name)}
-                  >
-                    {oneData.name}
-                  </li>
-                );
-              })
-            : null}
-
-          {selectedItem !== [] && showData === false ? (
+          {selectedItem ? (
             <li>{this.state.selectedItem}</li>
-          ) : null}
+          ) : (
+            userInput &&
+            filteredArray.map(oneData => {
+              return (
+                <li key={oneData.url} onClick={() => userChoice(oneData.name)}>
+                  {oneData.name}
+                </li>
+              );
+            })
+          )}
         </ul>
       </form>
     );
