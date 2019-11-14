@@ -17,7 +17,9 @@ class Search extends Component {
     const loadData = url => {
       return fetch(url).then(res => {
         return res.json().then(json => {
-          data.push(json.results);
+          json.results.forEach(element => {
+            data.push(element);
+          });
 
           if (json.next) {
             loadData(json.next);
@@ -28,12 +30,6 @@ class Search extends Component {
 
     loadData(url);
     this.setState({ data: data });
-
-    // fetch(`https://swapi.co/api/${this.props.resource}/`)
-    //   .then(res => {
-    //     res.json().then(data => this.setState({ data: data.results }));
-    //   })
-    //   .catch(err => console.log(err));
   };
 
   handleChange = e => {

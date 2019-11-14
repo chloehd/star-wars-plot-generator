@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Search from "./Search";
+import Search from "./Components/Search";
 import Plot from "./Components/Plot";
 
 class App extends Component {
@@ -25,20 +25,23 @@ class App extends Component {
         <header className="App-header">
           <h1>Plot Generator</h1>
         </header>
-
+        <p>Choose a planet</p>
         <Search
           resource="planets"
           onSelect={planet => {
             this.setState({ selectedPlanet: planet });
           }}
         />
+        <p>Choose a person</p>
         <Search
           resource="people"
           onSelect={person => {
             this.setState({ selectedPerson: person });
           }}
         />
-        {selectedPerson && selectedPlanet && <Plot person={selectedPerson} planet={selectedPlanet}/>}
+        {selectedPerson && selectedPlanet && (
+          <Plot person={selectedPerson} planet={selectedPlanet} />
+        )}
       </div>
     );
   }
