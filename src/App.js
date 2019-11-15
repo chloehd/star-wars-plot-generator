@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Plot Generator</h1>
+          <h1 className="text-warning">Star Wars Plot Generator</h1>
         </header>
         <p>Choose a planet</p>
         <Search

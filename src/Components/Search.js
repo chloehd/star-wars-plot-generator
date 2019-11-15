@@ -12,6 +12,7 @@ class Search extends Component {
 
   componentDidMount = () => {
     const data = [];
+
     const url = `https://swapi.co/api/${this.props.resource}/`;
 
     const loadData = url => {
@@ -29,6 +30,8 @@ class Search extends Component {
     };
 
     loadData(url);
+    console.log(data);
+
     this.setState({ data: data });
   };
 
@@ -37,9 +40,9 @@ class Search extends Component {
   };
 
   render() {
-    const { userInput, selectedItem } = this.state;
+    const { userInput, selectedItem, data } = this.state;
 
-    const filteredArray = this.state.data.filter(dataFilter => {
+    const filteredArray = data.filter(dataFilter => {
       return dataFilter.name.toLowerCase().indexOf(userInput) !== -1;
     });
 
@@ -51,14 +54,18 @@ class Search extends Component {
     return (
       <form action="search">
         <input type="text" onChange={this.handleChange} />
-        <ul>
+        <ul className="list-group">
           {selectedItem ? (
-            <li>{this.state.selectedItem}</li>
+            <li className="list-group-item text-dark">{selectedItem}</li>
           ) : (
             userInput &&
             filteredArray.map(oneData => {
               return (
-                <li key={oneData.url} onClick={() => userChoice(oneData.name)}>
+                <li
+                  className="list-group-item text-dark"
+                  key={oneData.url}
+                  onClick={() => userChoice(oneData.name)}
+                >
                   {oneData.name}
                 </li>
               );
