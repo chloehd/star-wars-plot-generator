@@ -15,7 +15,12 @@ const plot = (person, planet) => `
 class Plot extends Component {
   render() {
     return (
-     <p>{plot(this.props.person, this.props.planet)}</p>
+      <div>
+        <p className="plot">{plot(this.props.person, this.props.planet)}</p>
+        <button value="Reset Form" class="btn btn-danger">
+          Try again
+        </button>
+      </div>
     );
   }
 }

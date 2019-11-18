@@ -25,20 +25,27 @@ class App extends Component {
         <header className="App-header">
           <h1 className="text-warning">Star Wars Plot Generator</h1>
         </header>
-        <p>Choose a planet</p>
-        <Search
-          resource="planets"
-          onSelect={planet => {
-            this.setState({ selectedPlanet: planet });
-          }}
-        />
-        <p>Choose a person</p>
-        <Search
-          resource="people"
-          onSelect={person => {
-            this.setState({ selectedPerson: person });
-          }}
-        />
+        <div className="choose-elements">
+          <div className="choose-planet">
+            <p className="p-choose-planet">Choose a planet</p>
+            <Search
+              resource="planets"
+              onSelect={planet => {
+                this.setState({ selectedPlanet: planet });
+              }}
+            />
+          </div>
+          <div className="choose-person">
+            <p className="p-choose-person">Choose a person</p>
+            <Search
+              resource="people"
+              onSelect={person => {
+                this.setState({ selectedPerson: person });
+              }}
+            />
+          </div>
+        </div>
+
         {selectedPerson && selectedPlanet && (
           <Plot person={selectedPerson} planet={selectedPlanet} />
         )}

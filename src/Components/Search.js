@@ -53,7 +53,14 @@ class Search extends Component {
 
     return (
       <form action="search">
-        <input type="text" onChange={this.handleChange} />
+        {selectedItem ? null : (
+          <input
+            className="input-group-text"
+            type="text"
+            onChange={this.handleChange}
+          />
+        )}
+
         <ul className="list-group">
           {selectedItem ? (
             <li className="list-group-item text-dark">{selectedItem}</li>
