@@ -3,22 +3,26 @@
   src: url("/starjout/Starjout.ttf");
 }
 
+body {
+  background-color: black;
+  color: white;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 li {
   list-style: none;
 }
 
 .list-group {
-  width: max-content;
+  width: 100%;
+  padding: 0;
 }
 
-.App {
-  margin-right: 2%;
-  margin-left: 2%;
-}
-
-body {
-  background-color: black;
-  color: white;
+p.col-md-12 {
+  text-align: center;
+  margin-top: 20px;
+  max-height: 20px;
 }
 
 .text-warning {
@@ -26,30 +30,51 @@ body {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 30px;
-}
-
-.choose-elements {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-right: 25%;
-  margin-left: 25%;
-}
-
-.p-choose-planet,
-.p-choose-person {
-  text-align: center;
+  width: 100%;
 }
 
 .input-group-text {
-  width: 200px;
   text-align: left;
-}
-
-.list-group-item {
-  width: 200px;
 }
 
 .plot {
   margin: 50px 20% 0px 20%;
+}
+
+.btn {
+  margin-top: 30px;
+  width: 100px;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  justify-content: center;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.main-plot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .col-lg-5 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  input {
+    max-height: 50px;
+    max-width: 200px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
 }

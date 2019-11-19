@@ -52,16 +52,16 @@ class Search extends Component {
     };
 
     return (
-      <form action="search">
+      <form action="search" className="row">
         {selectedItem ? null : (
           <input
-            className="input-group-text"
+            className="input-group-text col-lg-7 col-md-12"
             type="text"
             onChange={this.handleChange}
           />
         )}
 
-        <ul className="list-group">
+        <ul className="list-group col-lg-7">
           {selectedItem ? (
             <li className="list-group-item text-dark">{selectedItem}</li>
           ) : (

@@ -21,28 +21,34 @@ class App extends Component {
     const { selectedPerson, selectedPlanet } = this.state;
 
     return (
-      <div className="App">
+      <div className="App container-fluid">
         <header className="App-header">
           <h1 className="text-warning">Star Wars Plot Generator</h1>
         </header>
-        <div className="choose-elements">
-          <div className="choose-planet">
-            <p className="p-choose-planet">Choose a planet</p>
-            <Search
-              resource="planets"
-              onSelect={planet => {
-                this.setState({ selectedPlanet: planet });
-              }}
-            />
-          </div>
-          <div className="choose-person">
-            <p className="p-choose-person">Choose a person</p>
-            <Search
-              resource="people"
-              onSelect={person => {
-                this.setState({ selectedPerson: person });
-              }}
-            />
+        <div className="choose-elements container">
+          <div className="row">
+            <div className="choose-planet col-lg-5 col-md-12">
+              <p className="p-choose-planet col-lg-12 col-md-12">
+                Choose a planet
+              </p>
+              <Search
+                resource="planets"
+                onSelect={planet => {
+                  this.setState({ selectedPlanet: planet });
+                }}
+              />
+            </div>
+            <div className="choose-person col-lg-5 col-md-12">
+              <p className="p-choose-person col-lg-12 col-md-12">
+                Choose a person
+              </p>
+              <Search
+                resource="people"
+                onSelect={person => {
+                  this.setState({ selectedPerson: person });
+                }}
+              />
+            </div>
           </div>
         </div>
 

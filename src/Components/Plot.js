@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
 const plot = (person, planet) => `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices rutrum convallis. 
-  ${person} et lorem fermentum, bibendum urna fermentum, rutrum metus. 
+  Our hero ${person} et lorem fermentum, bibendum urna fermentum, rutrum metus. 
   Morbi dolor dolor, venenatis vel risus a, porttitor consectetur est. 
   Ut ac ultrices neque. Cras ut volutpat nibh. Pellentesque a dui sit amet sapien tempus blandit. 
   Nunc fermentum tincidunt diam eu vulputate.
@@ -15,7 +14,7 @@ const plot = (person, planet) => `
 class Plot extends Component {
   render() {
     return (
-      <div>
+      <div className="main-plot">
         <p className="plot">{plot(this.props.person, this.props.planet)}</p>
         <button value="Reset Form" class="btn btn-danger">
           Try again
