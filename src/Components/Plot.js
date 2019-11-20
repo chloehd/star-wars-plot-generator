@@ -1,24 +1,18 @@
 import React, { Component } from "react";
 
-const plot = (person, planet) => `
-  Our hero ${person} et lorem fermentum, bibendum urna fermentum, rutrum metus. 
-  Morbi dolor dolor, venenatis vel risus a, porttitor consectetur est. 
-  Ut ac ultrices neque. Cras ut volutpat nibh. Pellentesque a dui sit amet sapien tempus blandit. 
-  Nunc fermentum tincidunt diam eu vulputate.
+const title = person => `${person} is sceptical`;
 
-  Phasellus facilisis odio sed varius ${planet}. Vestibulum lacinia risus at magna ultrices, 
-  aliquet efficitur justo fringilla. Proin elementum rutrum orci, at tristique ligula sagittis ac. 
-  Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+const plot = (person, planet) => `
+  Our hero ${person}, not completely convinced by the way that recently took the Star Wars saga, decided to 
+  go to ${planet} to find peace and to meditate. 
   `;
 
 class Plot extends Component {
   render() {
     return (
       <div className="main-plot">
+        <p className="plot-title">{title(this.props.person)}</p>
         <p className="plot">{plot(this.props.person, this.props.planet)}</p>
-        <button value="Reset Form" class="btn btn-danger">
-          Try again
-        </button>
       </div>
     );
   }

@@ -13,10 +13,6 @@ class App extends Component {
     };
   }
 
-  togglePlot = () => {
-    this.setState(state => ({ plotDataIsShow: !state.plotDataIsShow }));
-  };
-
   render() {
     const { selectedPerson, selectedPlanet } = this.state;
 
@@ -27,17 +23,6 @@ class App extends Component {
         </header>
         <div className="choose-elements container">
           <div className="row">
-            <div className="choose-planet col-lg-5 col-md-12">
-              <p className="p-choose-planet col-lg-12 col-md-12">
-                Choose a planet
-              </p>
-              <Search
-                resource="planets"
-                onSelect={planet => {
-                  this.setState({ selectedPlanet: planet });
-                }}
-              />
-            </div>
             <div className="choose-person col-lg-5 col-md-12">
               <p className="p-choose-person col-lg-12 col-md-12">
                 Choose a person
@@ -49,9 +34,21 @@ class App extends Component {
                 }}
               />
             </div>
+            <div className="choose-planet col-lg-5 col-md-12">
+              <p className="p-choose-planet col-lg-12 col-md-12">
+                Choose a planet
+              </p>
+              <Search
+                resource="planets"
+                onSelect={planet => {
+                  this.setState({ selectedPlanet: planet });
+                }}
+              />
+            </div>
           </div>
         </div>
 
+        {/* only show the plot when a person and a planet are selected */}
         {selectedPerson && selectedPlanet && (
           <Plot person={selectedPerson} planet={selectedPlanet} />
         )}
