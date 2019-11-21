@@ -3,7 +3,7 @@ import React, { Component } from "react";
 const title = person => `${person} is sceptical`;
 
 const plot = (person, planet) => `
-  Our hero ${person}, not completely convinced by the way that recently took the Star Wars saga, decided to 
+  Our hero ${person}, not completely convinced by the way that the Star Wars saga recently took, decided to 
   go to ${planet} to find peace and to meditate. 
   `;
 
