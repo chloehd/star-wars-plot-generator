@@ -6,7 +6,6 @@ This project generates a plot when the user chooses a person and a planet.
 
 ## Technologies
 
-### ReactJS
 This App has been created by `create-react-app`.
 
 ### Design
@@ -32,10 +31,10 @@ You will also see any lint errors in the console.
 ## Structure
 
 One Parent:
-– App.js
+App.js
 
 Two Children Components:
-– Plot.js
-– Search.js
+Plot.js
+Search.js
 
 The data are fetched directly in the Search Component for this exercise and there is only one plot. This could be improved in a next version.
