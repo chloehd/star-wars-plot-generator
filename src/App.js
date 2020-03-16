@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Search from "./Components/Search";
-import Plot from "./Components/Plot";
+import { Plot } from "./Components/Plot";
 
 class App extends Component {
   constructor(props) {
